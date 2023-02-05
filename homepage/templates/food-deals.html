@@ -5,7 +5,9 @@
     <head>
         <meta charset="utf-8">
         <title> Restaurant Deals</title>
-        <link rel="stylesheet" href="styles.css">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
+
         <style>
             .row{
                 display: flex;
@@ -61,7 +63,6 @@
         <div class="row">
             <div class="column">
               <div class="card">
-                <!-- <img src="images/sample_restaurant.jpg" style="width:100%"> -->
 								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
                 <h3>Restaurant Name 1</h3>
                 <p>BOGO</p>
@@ -70,7 +71,6 @@
           
             <div class="column">
               <div class="card">
-                <!-- <img src="images/sample_restaurant.jpg" style="width:100%"> -->
 								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
                 <h3>Restaurant Name 2</h3>
                 <p>Insert deal here</p>
@@ -79,7 +79,6 @@
             
             <div class="column">
               <div class="card">
-                <!-- <img src="images/sample_restaurant.jpg" style="width:100%"> -->
 								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
                 <h3>Restaurant Name 3</h3>
                 <p>Another deal</p>

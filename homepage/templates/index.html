@@ -1,35 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Restaurant Deals</title>
 
-        <link rel="stylesheet" href="styles.css">
-
-        <style>
-            div#image{
-                height: 452px;
-                width: 700px;
-                border: 10px solid #495867;
-                margin-top: 20px;
-                float: left;
-            }
-            h2{
-                margin-top: 40px;
-                margin-left: 790px;
-                color:#495867;
-                font-size: 30px;
-                font-family: arial;
-            }
-            p{
-                text-align: left;
-                margin-left: 750px;
-                margin-right: 70px;
-                color:#495867;
-                font-size: 16px;
-                font-family: arial;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
 
     </head>
     <body>
@@ -40,17 +16,17 @@
              </header>
             {% include 'navbar.html' %}
         </div>
-        <div id="image">
-            {% load static %}
+        <div id='index-image'>
             <img src="{% static 'homepage/diningroom.jpg' %}" width="100%" alt="My image"/>
         </div>
 
         <h2>Save money, help others</h2>
-        <p style="font-size: 20px;">
-            Are you wondering what to order for dinner?
-        </p>
+        <h3 id='index-h3'>Are you wondering what to order for dinner?</h3>
         
-        <p>Instead of spending extra money on delivery fees, why don't you go out and support your local restaurants?
+
+
+
+        <p id='index-paragraph'>Instead of spending extra money on delivery fees, why don't you go out and support your local restaurants?
             <br><br>
             Take advantage of the awesome deals listed on our site!
             <br><br>

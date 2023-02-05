@@ -1,5 +1,43 @@
+
+div#index-image {
+    height: 452px;
+    width: 700px;
+    border: 10px solid #495867;
+    margin-top: 20px;
+    float: left;
+}
+
+
 body {
     background-color: #BDD5EA;
+}
+
+
+p#index-paragraph {
+    text-align: left;
+    margin-left: 750px;
+    margin-right: 70px;
+    color:#495867;
+    font-size: 16px;
+    font-family: arial;
+}
+
+h3#index-h3 {
+    text-align: left;
+    margin-left: 750px;
+    margin-right: 70px;
+    color:#495867;
+    font-size: 20px;
+    font-family: arial;
+
+}
+
+h2 {
+    margin-top: 40px;
+    margin-left: 790px;
+    color:#495867;
+    font-size: 30px;
+    font-family: arial;
 }
 
 nav {
@@ -43,4 +81,9 @@ p {
     color: #495867;
     font-family: arial;
 }
+
+
+
+
+
 
