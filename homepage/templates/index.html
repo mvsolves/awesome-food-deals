@@ -38,26 +38,19 @@
             <header>
                 <h1>Restaurant Deals</h1>
              </header>
-            <nav>
-                <a href="index">Home</a>
-                <a href="food-deals">Food Deals</a>
-                <a href="search">Search</a>
-                <a href="about">About Us</a>
-                <a href="FAQ">FAQ</a>
-            </nav>
+            {% include 'navbar.html' %}
         </div>
         <div id="image">
-            <img src="images/diningroom.jpg" width="100%">
+            {% load static %}
+            <img src="{% static 'homepage/diningroom.jpg' %}" width="100%" alt="My image"/>
         </div>
-        <h2>
-            Save money, help others
-        </h2>
+
+        <h2>Save money, help others</h2>
         <p style="font-size: 20px;">
             Are you wondering what to order for dinner?
         </p>
         
-        <p> 
-            Instead of spending extra money on delivery fees, why don't you go out and support your local restaurants?
+        <p>Instead of spending extra money on delivery fees, why don't you go out and support your local restaurants?
             <br><br>
             Take advantage of the awesome deals listed on our site!
             <br><br>

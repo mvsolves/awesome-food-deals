@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title> Restaurant Deals</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            .row{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 20px;
+            }            
+            /* Float four columns side by side */
+            .column {
+              float: left;
+              width: 25%;
+              padding: 0 20px;
+            }
+            
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            
+            /* Responsive columns */
+            @media screen and (max-width: 600px) {
+              .column {
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+              }
+            }
+            
+            /* Style the counter cards */
+            .card {
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+              padding: 10px;
+              text-align: center;
+              background-color: white;
+              border-radius: 5px
+            }
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+             }
+            
+            </style>
+    </head>
+    <body>
+        <div id="main">
+            <header>
+                <h1 style = "text-align: center; color: #495867;">Restaurant Deals</h1>
+             </header>
+            {% include 'navbar.html' %}
+        </div>
+
+        <div class="row">
+            <div class="column">
+              <div class="card">
+                <!-- <img src="images/sample_restaurant.jpg" style="width:100%"> -->
+								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
+                <h3>Restaurant Name 1</h3>
+                <p>BOGO</p>
+              </div>
+            </div>
+          
+            <div class="column">
+              <div class="card">
+                <!-- <img src="images/sample_restaurant.jpg" style="width:100%"> -->
+								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
+                <h3>Restaurant Name 2</h3>
+                <p>Insert deal here</p>
+              </div>
+            </div>
+            
+            <div class="column">
+              <div class="card">
+                <!-- <img src="images/sample_restaurant.jpg" style="width:100%"> -->
+								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
+                <h3>Restaurant Name 3</h3>
+                <p>Another deal</p>
+              </div>
+            </div>
+            
+          </div>
+        
+    </body>
+</html>
