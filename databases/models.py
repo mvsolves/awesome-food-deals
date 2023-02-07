@@ -12,7 +12,7 @@ class Restaurant(models.Model):
 
 class Deal(models.Model):
     deal_name = models.CharField(max_length=30)
-    rest = models.ManyToManyField(Restaurant)
+    rest = models.ManyToManyField(Restaurant, related_name='restaurant_deals')
 
     def __str__(self) -> str:
         return self.deal_name
