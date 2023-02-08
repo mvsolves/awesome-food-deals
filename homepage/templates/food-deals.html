@@ -64,8 +64,10 @@
             <div class="column">
               <div class="card">
 								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>Restaurant Name 1</h3>
-                <p>BOGO</p>
+                <h3>{{user.restaurant}}</h3>
+                {% for deal in user.restaurant.restaurant_deals.all %}
+                <p>{{deal}}</p>
+                {% endfor %}
               </div>
             </div>
           
