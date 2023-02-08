@@ -1,0 +1,17 @@
+# No __pycache__ tracking neccessary
+project/__pycache__
+databases/__pycache__
+homepage/__pycache__
+
+# Migration build artifacts not needed in main repo
+homepage/migrations
+databases/migrations
+
+# Don't track virtual env stuff
+venv/
+
+# Other stuff to not push to repo
+homepage/.DS_Store
+homepage/templates/.DS_Store
+.DS_Store
+db.sqlite3
