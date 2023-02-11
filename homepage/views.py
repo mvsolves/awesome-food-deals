@@ -17,7 +17,6 @@ def foodDeals(request):
                                                'totalCount': count
                                                })
 
-
 def search(request):
     return render(request, 'search.html', {})
 
