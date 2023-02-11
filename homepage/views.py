@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from databases.models import Restaurant, Deal
 
 from databases.models import Restaurant
 
@@ -9,8 +10,13 @@ def index(request):
 
 def foodDeals(request):
     count = Restaurant.objects.count()
-    print(count)
-    return render(request, 'food-deals.html', {'totalCount': count})
+    allRestaurants = Restaurant.objects.all().values()
+    allDeals= Deal.objects.all().values()
+    return render(request, 'food-deals.html', {'varAllRestaurants': allRestaurants,
+                                               'varAllDeals': allDeals,
+                                               'totalCount': count
+                                               })
+
 
 def search(request):
     return render(request, 'search.html', {})
