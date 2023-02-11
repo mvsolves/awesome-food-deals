@@ -60,17 +60,37 @@
             {% include 'navbar.html' %}
         </div>
 
+        <!-- TESTING CODE 
+        <h3>{ varAllRestaurants }}</h3>
+        <h3>{ varAllDeals }}</h3>
+        -->
+
         <div class="row">
+
+
+
+
+
+
+
+
+            <!-- TESTING CODE -->
+            {% for restaurant in varAllRestaurants %}
             <div class="column">
               <div class="card">
 								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>{{user.restaurant}}</h3>
-                {% for deal in user.restaurant.restaurant_deals.all %}
-                <p>{{deal}}</p>
-                {% endfor %}
+                <h3>{{ restaurant.rest_name }} at {{ restaurant.rest_location }}</h3>
+                <p>Insert deal here</p>
               </div>
             </div>
-          
+            {% endfor %}
+
+
+
+
+
+
+
             <div class="column">
               <div class="card">
 								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
