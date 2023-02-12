@@ -10,7 +10,7 @@ def index(request):
 
 def foodDeals(request):
     count = Restaurant.objects.count()
-    allRestaurants = Restaurant.objects.all().values()
+    allRestaurants = Restaurant.objects.all()
     allDeals= Deal.objects.all().values()
     return render(request, 'food-deals.html', {'varAllRestaurants': allRestaurants,
                                                'varAllDeals': allDeals,
