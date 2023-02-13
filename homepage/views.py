@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from databases.models import Restaurant, Deal, TestForFavs
+from databases.models import Restaurant, Deal
 
 from databases.models import Restaurant
 
