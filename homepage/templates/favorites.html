@@ -16,5 +16,16 @@
             {% include 'navbar.html' %}
         </div>
         <p>This will store your favorited deals so you can easily access them later.</p>
+        <p>
+            <button id="btn" class="btn btn-primary" data-toggle="collapse" data-target="#collapseCard" aria-expanded="false" aria-controls="collapseCard" name="test" value="True">
+        Button name
+            </button>
+        </p>
+        <div class="collapse {% if test.TestForFavs %} show {% endif %}" id="collapseCard">
+        <div class="card card-body">
+        {% BUTTON TEXT HERE %}
+        </div>
+        </div>
+        <input type="hidden" name="test" id="test" />
     </body>
 </html>

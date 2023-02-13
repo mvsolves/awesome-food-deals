@@ -16,3 +16,6 @@ class Restaurant(models.Model):
 
     def __str__(self) -> str:
         return self.rest_name + " at " + self.rest_location
+
+class TestForFavs(models.Model):
+    test = models.BooleanField(default=False)
