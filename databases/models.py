@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Deal(models.Model):
     deal_name = models.CharField(max_length=30)
+    favorite = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.deal_name

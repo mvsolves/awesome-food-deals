@@ -20,6 +20,9 @@ def foodDeals(request):
 def search(request):
     return render(request, 'search.html', {})
 
+def favorites(request):
+    return render(request, 'favorites.html', {})
+
 def about(request):
     return render(request, 'about.html', {})
 
