@@ -4,4 +4,19 @@ from django.contrib import messages
 
 # Create your views here.
 def login_user(request):
-    return render(request, 'authenticate/login.html', {})
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            # Redirect to a success page.
+            return redirect('index')
+        else:
+            # Return an 'invalid login' error message.
+            messages.success(request, ("There was an error logging in."))
+            return redirect('login-user')
+
+    else:
+        return render(request, 'authenticate/login.html', {})
