@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang='en'>
 	<head>
@@ -27,6 +28,27 @@
                       <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Restaurant Deals</span>
                     </a>
 
+
+
+                  {% if user.is_authenticated %}
+                  <div class="flex md:order-2">
+                    <div class="dropdown inline-block relative">
+                      <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
+                        <span class="mr-1">{{ user.customer.first_name }} {{ user.customer.last_name }}</span>
+                      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> </svg>
+                      </button>
+
+                      <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
+                        <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Favorites</a></li>
+                        <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Logout</a></li>
+                      </ul>
+                    </div>
+                  </div>
+
+
+
+
+                  {% else %}
                   <div class="flex md:order-2">
                     <div class="dropdown inline-block relative">
                       <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center">
@@ -36,11 +58,11 @@
 
                       <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
                         <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{% url 'login-user' %}">Login</a></li>
-                        <li class=""><a class="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Sign up</a></li>
-                        <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Favorites</a></li>
+                        <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Sign up</a></li>
                       </ul>
                     </div>
                   </div>
+                  {% endif %}
 
 
 
