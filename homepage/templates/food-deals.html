@@ -1,116 +1,69 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title> Restaurant Deals</title>
+{% block title %}Restaurant Deals{% endblock %}
 
-        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
+{% block content %}
+<title> Restaurant Deals</title>
 
-        <style>
-            .row{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-top: 20px;
-            }            
-            /* Float four columns side by side */
-            .column {
-              float: left;
-              width: 25%;
-              padding: 0 20px;
-            }
-            
-            /* Clear floats after the columns */
-            .row:after {
-              content: "";
-              display: table;
-              clear: both;
-            }
-            
-            /* Responsive columns */
-            @media screen and (max-width: 600px) {
-              .column {
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-              }
-            }
-            
-            /* Style the counter cards */
-            .card {
-              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-              padding: 10px;
-              text-align: center;
-              background-color: white;
-              border-radius: 5px
-            }
-            .card:hover {
-                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-             }
-            
-            </style>
-    </head>
-    <body>
-        <div id="main">
-            <header>
-                <h1 style = "text-align: center; color: #495867;">Restaurant Deals</h1>
-             </header>
-            {% include 'navbar.html' %}
-        </div>
+<style>
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}            
 
-        <!-- TESTING CODE -->
-        <!-- <h3>{ varAllRestaurants }}</h3> -->
-        <!-- <h3>{ varAllDeals }}</h3> -->
+/* Float four columns side by side */
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 20px;
+}
 
-        <div class="row">
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+ }
+</style>
 
 
+<div class="row">
+  <!-- Restaurant iteration -->
+  {% for restaurant in varAllRestaurants %}
+  <div class="column">
+    <div class="card">
+      <img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
+      <h3>{{ restaurant.rest_name }} at {{ restaurant.rest_location }}</h3>
 
+      {% for deal in restaurant.deals.all  %}
+        <p>Deals: {{ deal.deal_name }}</p>
+      {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
 
-
-
-
-
-            <!-- Restaurant iteration -->
-            {% for restaurant in varAllRestaurants %}
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>{{ restaurant.rest_name }} at {{ restaurant.rest_location }}</h3>
-
-                {% for deal in restaurant.deals.all  %}
-                  <p>Deals: {{ deal.deal_name }}</p>
-                {% endfor %}
-
-              </div>
-            </div>
-            {% endfor %}
-
-
-
-
-
-
-
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>Restaurant Name</h3>
-                <p>Some deal here</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>Restaurant Name</h3>
-                <p>Another deal</p>
-              </div>
-            </div>
-            
-          </div>
-        
-    </body>
-</html>
+{% endblock %}
