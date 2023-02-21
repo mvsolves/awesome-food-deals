@@ -49,30 +49,47 @@
             .card:hover {
                 box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
              }
+             .is-hidden { display: none; }
             
             </style>
     </head>
     <body>
+      
         <div id="main">
             <header>
                 <h1 style = "text-align: center; color: #495867;">Restaurant Deals</h1>
              </header>
             {% include 'navbar.html' %}
         </div>
-
+        <form id="form" style = "text-align: center; margin-top: 10px;"> 
+          <input style = "width: 400px; height: 30px;"type="search" oninput = "liveSearch()" id="query" name="q" placeholder="Search...">
+          <button>Search</button>
+        </form>
         <!-- TESTING CODE -->
         <!-- <h3>{ varAllRestaurants }}</h3> -->
         <!-- <h3>{ varAllDeals }}</h3> -->
-
+        <script>
+          function liveSearch() {
+            // Locate the card elements
+            let cards = document.querySelectorAll('.card')
+            // Locate the search input
+            let search_query = document.getElementById("query").value;
+            // Loop through the cards
+            for (var i = 0; i < cards.length; i++) {
+              // If the text is within the card...
+              if(cards[i].innerText.toLowerCase()
+                // ...and the text matches the search query...
+                .includes(search_query.toLowerCase())) {
+                  // ...remove the `.is-hidden` class.
+                  cards[i].classList.remove("is-hidden");
+              } else {
+                // Otherwise, add the class.
+                cards[i].classList.add("is-hidden");
+              }
+            }
+          }
+        </script>
         <div class="row">
-
-
-
-
-
-
-
-
             <!-- Restaurant iteration -->
             {% for restaurant in varAllRestaurants %}
             <div class="column">
@@ -87,28 +104,6 @@
               </div>
             </div>
             {% endfor %}
-
-
-
-
-
-
-
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>Restaurant Name</h3>
-                <p>Some deal here</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>Restaurant Name</h3>
-                <p>Another deal</p>
-              </div>
-            </div>
             
           </div>
         
