@@ -1,6 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title> Restaurant Deals</title>
+
+        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
+
+        <style>
+            .row{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 20px;
+            }            
+            /* Float four columns side by side */
+            .column {
+              float: left;
+              width: 25%;
+              padding: 0 20px;
+            }
+            
+            /* Clear floats after the columns */
+            .row:after {
+              content: "";
+              display: table;
+              clear: both;
+            }
+            
+            /* Responsive columns */
+            @media screen and (max-width: 600px) {
+              .column {
+                width: 100%;
+                display: block;
+                margin-bottom: 20px;
+              }
+            }
+            
+            /* Style the counter cards */
+            .card {
+              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+              padding: 10px;
+              text-align: center;
+              background-color: white;
+              border-radius: 5px
+            }
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+             }
+             .is-hidden { display: none; }
+            
+            </style>
+    </head>
+    <body>
+      
+        <div id="main">
+            <header>
+                <h1 style = "text-align: center; color: #495867;">Restaurant Deals</h1>
+             </header>
+            {% include 'navbar.html' %}
+        </div>
+        <form id="form" style = "text-align: center; margin-top: 10px;"> 
+          <input style = "width: 400px; height: 30px;"type="search" oninput = "liveSearch()" id="query" name="q" placeholder="Search...">
+          <button>Search</button>
+        </form>
+        <!-- TESTING CODE -->
+        <!-- <h3>{ varAllRestaurants }}</h3> -->
+        <!-- <h3>{ varAllDeals }}</h3> -->
+        <script>
+          function liveSearch() {
+            // Locate the card elements
+            let cards = document.querySelectorAll('.card')
+            // Locate the search input
+            let search_query = document.getElementById("query").value;
+            // Loop through the cards
+            for (var i = 0; i < cards.length; i++) {
+              // If the text is within the card...
+              if(cards[i].innerText.toLowerCase()
+                // ...and the text matches the search query...
+                .includes(search_query.toLowerCase())) {
+                  // ...remove the `.is-hidden` class.
+                  cards[i].classList.remove("is-hidden");
+              } else {
+                // Otherwise, add the class.
+                cards[i].classList.add("is-hidden");
+              }
+            }
+          }
+        </script>
+        <div class="row">
+            <!-- Restaurant iteration -->
+            {% for restaurant in varAllRestaurants %}
+            <div class="column">
+              <div class="card">
+								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
+                <h3>{{ restaurant.rest_name }} at {{ restaurant.rest_location }}</h3>
+
+                {% for deal in restaurant.deals.all  %}
+                  <p>Deals: {{ deal.deal_name }}</p>
+                {% endfor %}
+
+              </div>
+            </div>
+            {% endfor %}
+            
+          </div>
+        
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- MAIN CODE -->
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Restaurant Deals{% endblock %}
 
 {% block content %}
