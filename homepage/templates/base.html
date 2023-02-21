@@ -14,7 +14,7 @@
 
 	<body>
     <!-- Parent container -->
-    <div class="parent text-center flex flex-col min-h-screen">
+    <div class="parent text-center flex flex-col h-screen">
 
       <!-- Navbar item -->
         {% block nav %}
@@ -40,7 +40,7 @@
 
                       <ul class="dropdown-menu absolute hidden text-gray-700 pt-1">
                         <li class=""><a class="rounded-t bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Favorites</a></li>
-                        <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="#">Logout</a></li>
+                        <li class=""><a class="rounded-b bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap" href="{% url 'logout-user' %}">Logout</a></li>
                       </ul>
                     </div>
                   </div>
