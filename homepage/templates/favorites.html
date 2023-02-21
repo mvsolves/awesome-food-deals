@@ -1,20 +1,11 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Favorites</title>
 
-        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
+{% block title %}Favorites{% endblock %}
 
-    </head>
-    <body>
-        <div id="main">
-            <header>
-                <h1 style = "text-align: center; color: #495867;">Restaurant Deals</h1>
-            </header>
-            {% include 'navbar.html' %}
-        </div>
-        <p>This will store your favorited deals so you can easily access them later.</p>
-    </body>
-</html>
+{% block content %}
+<div id="main">
+    <h1 class='font-semibold text-xl'>Restaurant Deals</h1>
+    <p>This will store your favorited deals so you can easily access them later.</p>
+</div>
+{% endblock %}
