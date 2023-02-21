@@ -22,8 +22,6 @@ class Restaurant(models.Model):
     deals = models.ManyToManyField(Deal, related_name="deals")
     rest_name = models.CharField(max_length=30)
     rest_location = models.CharField(max_length=30)
-    students = models.ManyToManyField(Customer)
-    # user = models.ManyToManyField(User, primary_key=False)
 
     def __str__(self) -> str:
         return self.rest_name + " at " + self.rest_location
