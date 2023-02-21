@@ -18,3 +18,8 @@ db.sqlite3
 
 # Just for stubs
 pyproject.toml
+
+
+# Typings
+homepage/typings
+typings
