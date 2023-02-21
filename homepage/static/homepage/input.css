@@ -5,3 +5,8 @@
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+
+@layer utilities {
+  .card {
+  }
