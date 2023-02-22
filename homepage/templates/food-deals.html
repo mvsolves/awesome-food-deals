@@ -1,92 +1,86 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block title %}Restaurant Deals{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title> Restaurant Deals</title>
+{% block content %}
+<script>
+  function liveSearch() {
+    console.log("searching..")
+    // Locate the card elements
+    let cards = document.querySelectorAll('.card')
+    console.log(cards)
+    // Locate the search input
+    let search_query = document.getElementById("query").value;
+    console.log(search_query)
+    // Loop through the cards
+    for (var i = 0; i < cards.length; i++) {
+      // If the text is within the card...
+      if(cards[i].innerText.toLowerCase()
+        // ...and the text matches the search query...
+        .includes(search_query.toLowerCase())) {
+          // ...remove the `.is-hidden` class.
+          cards[i].classList.remove("invisible");
+      } else {
+        // Otherwise, add the class.
+        cards[i].classList.add("invisible");
+      }
+    }
+  }
+</script>
 
-        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
+<!-- Flex container -->
+<div class='container flex flex-col p-4'>
 
-        <style>
-            .row{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-top: 20px;
-            }            
-            /* Float four columns side by side */
-            .column {
-              float: left;
-              width: 25%;
-              padding: 0 20px;
-            }
-            
-            /* Clear floats after the columns */
-            .row:after {
-              content: "";
-              display: table;
-              clear: both;
-            }
-            
-            /* Responsive columns */
-            @media screen and (max-width: 600px) {
-              .column {
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-              }
-            }
-            
-            /* Style the counter cards */
-            .card {
-              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-              padding: 10px;
-              text-align: center;
-              background-color: white;
-              border-radius: 5px
-            }
-            .card:hover {
-                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-             }
-            
-            </style>
-    </head>
-    <body>
-        <div id="main">
-            <header>
-                <h1 style = "text-align: center; color: #495867;">Restaurant Deals</h1>
-             </header>
-            {% include 'navbar.html' %}
-        </div>
+  <!-- Search bar -->
+  <div class="flex items-center justify-center p-6 space-x-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-500">
+    <div class="flex bg-gray-100 p-4 w-96 space-x-4 rounded-lg">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+      </svg>
+      <input class="bg-gray-100 outline-none w-96" oninput='liveSearch()' id='query' name='q' type="text" placeholder="Restaurant name or keyword.." />
+    </div>
+    <div class="flex py-3 px-4 rounded-lg text-gray-500 font-semibold cursor-pointer">
+      <span>All categories</span>
 
-        <!-- TESTING CODE -->
-        <!-- <h3>{ varAllRestaurants }}</h3> -->
-        <!-- <h3>{ varAllDeals }}</h3> -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+    <div class="bg-blue-600 py-3 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer">
+      <span>Search</span>
+    </div>
+  </div> <!-- End of search bar -->
 
-        <div class="row">
+  <!-- Cards -->
+  <div class='h-full w-full flex justify-evenly p-10 items-start'>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
 
+    {% for restaurant in varAllRestaurants %}
+    <div class="card max-w-xs max-h-full rounded-xl overflow-hidden shadow-2xl transform transition duration-500 hover:scale-105">
+      <!-- Card image -->
+      <img class="w-full" src="{% static 'homepage/sample_restaurant.jpg' %}" alt="Restaurant">
 
+      <!-- Body -->
+      <div class="px-6 py-4 bg-white">
+        <div class="font-bold text-xl mb-2">{{ restaurant.rest_name }} at {{ restaurant.rest_location }}</div>
+        {% for deal in restaurant.deals.all %}
+        <p class="text-gray-700 text-base">Deals: {{ deal.deal_name }}</p>
+        {% endfor %}
+      </div>
 
-
-
-
-
-
-            <!-- Restaurant iteration -->
-            {% for restaurant in varAllRestaurants %}
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>{{ restaurant.rest_name }} at {{ restaurant.rest_location }}</h3>
-
-                {% for deal in restaurant.deals.all  %}
-                  <p>Deals: {{ deal.deal_name }}</p>
-                {% endfor %}
-
-              </div>
-            </div>
-            {% endfor %}
+      <!-- Hashtags -->
+      <div class="px-6 pt-4 pb-2 bg-white">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#yummy</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#food</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#summer</span>
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+  </div> <!-- End of cards -->
+  
+</div> <!-- End of flex container -->
+{% endblock %}
 
 
 
@@ -94,23 +88,43 @@
 
 
 
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>Restaurant Name</h3>
-                <p>Some deal here</p>
-              </div>
-            </div>
-            
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>Restaurant Name</h3>
-                <p>Another deal</p>
-              </div>
-            </div>
-            
-          </div>
-        
-    </body>
-</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

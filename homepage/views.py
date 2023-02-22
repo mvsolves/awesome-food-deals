@@ -14,10 +14,6 @@ def foodDeals(request):
                                                'varAllDeals': allDeals,
                                                'totalCount': count
                                                })
-
-def search(request):
-    return render(request, 'search.html', {})
-
 def favorites(request):
     count = Restaurant.objects.count()
     allRestaurants = Restaurant.objects.all()

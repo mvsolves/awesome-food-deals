@@ -1,51 +1,20 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>FAQ</title>
 
-        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
-        <style>
-            h3{
-                text-align: center;
-                color: #495867;
-                font-family: arial;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="main">
-            <header>
-                <h1>
-                    Restaurant Deals
-                </h1>
-             </header>
-            {% include 'navbar.html' %}
-        </div>
-        <h3>
-            What is this?
-        </h3>       
-        <p>
-            This is a website designed to gather all the latest restaurant deals near you.
-        </p> 
-        <h3> Who is this for?</h3>
-        <p>
-            Anyone who wants to save money and help local restaurants!
-        </p>
-        <h3> 
-            How do I use this?
-        </h3>
-        <p>
-            Click on the "Food Deals" tab at the top and it will direct you to a list of restaurants and the deals that they are offering.
-            <br>
-            Go  to the restaurant and mention the deal when ordering.
-        </p>
-        <h3>
-            What's the catch?
-        </h3>
-        <p>
-            You have to order in person! This way, restaurants are saving money from extra third-party fees, and you get to save money on food!
-        </p>
-    </body>
-</html>
+{% block title %}FAQ{% endblock %}
+
+{% block content %}
+<div class='flex flex-col'>
+        <h1 class='font-semibold text-xl'>What is this?</h1>       
+        <p>This is a website designed to gather all the latest restaurant deals near you.</p> 
+
+        <h1 class='font-semibold text-xl'> Who is this for?</h1>
+        <p>Anyone who wants to save money and help local restaurants!</p>
+
+        <h1 class='font-semibold text-xl'> How do I use this?</h1>
+        <p>Click on the "Food Deals" tab at the top and it will direct you to a list of restaurants and the deals that they are offering.<br>Go to the restaurant and mention the deal when ordering.</p>
+
+        <h1 class='font-semibold text-xl'>What's the catch?</h1>
+        <p>You have to order in person! This way, restaurants are saving money from extra third-party fees, and you get to save money on food!</p>
+</div>
+{% endblock %}

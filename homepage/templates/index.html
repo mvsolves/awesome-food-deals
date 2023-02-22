@@ -1,58 +1,26 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Restaurant Deals</title>
 
-        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
+{% block title %}Home{% endblock %}
 
-    </head>
-    <body>
-        <form action="action_page.php" method="post">
-          
-            <div class="container">
-              <label for="uname"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="uname" required>
-          
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="psw" required>
-          
-              <button type="submit">Login</button>
-              <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
-              </label>
-            </div>
-          
-            <div class="container" style="background-color:#f1f1f1">
-              <button type="button" class="cancelbtn">Cancel</button>
-              <span class="psw">Forgot <a href="#">password?</a></span>
-            </div>
-          </form>
+{% block content %}
+<!-- <h1>Welcome back {{ user.customer.first_name }} {{ user.customer.last_name }}!</h1> -->
 
-        <div id="main">
-            <header>
-                <h1>Restaurant Deals</h1>
-             </header>
-            {% include 'navbar.html' %}
-        </div>
-        <div id='index-image'>
-            <img src="{% static 'homepage/diningroom.jpg' %}" width="100%" alt="My image"/>
-        </div>
+<div class='flex'>
+  <div class="flex-1 p-4">
+		<img class='rounded-lg' src="{% static 'homepage/diningroom.jpg' %}" width="100%" alt="My image"/>
+	</div>
 
-        <h2>Save money, help others</h2>
-        <h3 id='index-h3'>Are you wondering what to order for dinner?</h3>
-        
+  <div class="flex-1 p-4">
+		<h2 class='text-5xl font-bold'>Save money, help others</h2>
+		<h3 class='text-3xl font-bold'>Are you wondering what to order for dinner?</h3>
+		<br>
 
-
-
-        <p id='index-paragraph'>Instead of spending extra money on delivery fees, why don't you go out and support your local restaurants?
-            <br><br>
-            Take advantage of the awesome deals listed on our site!
-            <br><br>
-            Ordering in person gives you a great opportunity to save money using in-person deals and at the same time, you will be helping restaurants by increasing foot traffic and allowing them to save on third-party fees.
-            <br><br>
-            Offers are only redeemable in person.
-        </p>
-    </body>
- </html>
+		<p>Instead of spending extra money on delivery fees, why don't you go out and support your local restaurants?<br><br>
+				Take advantage of the awesome deals listed on our site!<br><br>
+				Ordering in person gives you a great opportunity to save money using in-person deals and at the same time, you will be helping restaurants by increasing foot traffic and allowing them to save on third-party fees.
+				<br><br>Offers are only redeemable in person.
+		</p>
+	</div>
+</div>
+{% endblock %}
