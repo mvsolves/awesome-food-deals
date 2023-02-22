@@ -16,10 +16,6 @@ def foodDeals(request):
                                                'varAllDeals': allDeals,
                                                'totalCount': count
                                                })
-
-def search(request):
-    return render(request, 'search.html', {})
-
 def favorites(request):
     return render(request, 'favorites.html', {})
 
