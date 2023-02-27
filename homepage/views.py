@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from databases.models import Restaurant, Deal
+from databases.models import Restaurant, Deal, Location
 
 # Create your views here.
 
@@ -10,8 +10,10 @@ def foodDeals(request):
     count = Restaurant.objects.count()
     allRestaurants = Restaurant.objects.all()
     allDeals= Deal.objects.all().values()
+    allLocations = Location.objects.all().values()
     return render(request, 'food-deals.html', {'varAllRestaurants': allRestaurants,
                                                'varAllDeals': allDeals,
+                                               'varAllLocations': allLocations,
                                                'totalCount': count
                                                })
 def favorites(request):
