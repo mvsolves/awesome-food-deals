@@ -38,50 +38,52 @@
       <aside class="w-full h-full transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
 
-          <ul class="space-y-2">
+          <form method='get'>
+            <button type='submit' class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Apply</button>
+            {{ varRestaurantFilter.qs }}
 
-            <li>
-              <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-                <span class="ml-3">Locations</span>
-              </a>
-            </li>
+            <ul class="space-y-2">
 
-            {% for location in varAllLocations %}
-            <!~~ Checkbox ~~>
-            <li class='flex justify-start p-2'>
-              <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ location.location_name }}</label>
-            </li>
-            {% endfor %}
-          </ul>
+              <li>
+                <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+                  <span class="ml-3">Locations</span>
+                </a>
+              </li>
 
-
-
-
-          <!~~ Bottom section ~~>
-          <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
-
-            <li>
-              <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
-                <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white dark:text-gray-400" focusable="false" data-prefix="fas" data-icon="gem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0 192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6 224H1.365L244.3 474.9z"></path></svg>
-                <span class="ml-4">Deals</span>
-              </a>
-            </li>
-
-
-            {% for deal in varAllDeals %}
-            <!~~ Checkbox ~~>
-            <li class='flex justify-start p-2'>
-              <input id="default-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-              <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ deal.deal_name }}</label>
-            </li>
-            {% endfor %}
+              
+              {% for location in varAllLocations %}
+              <!~~ Checkbox ~~>
+              <li class='flex justify-start p-2'>
+                <input id="default-checkbox" type="checkbox" value='{{ location.location_name }}' name="loc" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ location.location_name }}</label>
+              </li>
+              {% endfor %}
+            </ul>
 
 
 
-          </ul>
 
+            <!~~ Bottom section ~~>
+            <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+
+              <li>
+                <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+                  <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white dark:text-gray-400" focusable="false" data-prefix="fas" data-icon="gem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0 192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6 224H1.365L244.3 474.9z"></path></svg>
+                  <span class="ml-4">Deals</span>
+                </a>
+              </li>
+
+
+              {% for deal in varAllDeals %}
+              <!~~ Checkbox ~~>
+              <li class='flex justify-start p-2'>
+                <input id="default-checkbox" type="checkbox" value="{{ deal.deal_name }}" name='deal' class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ deal.deal_name }}</label>
+              </li>
+              {% endfor %}
+            </ul>
+          </form>
         </div>
       </aside>
 
@@ -118,6 +120,7 @@
         <div class='h-full w-full flex justify-evenly p-10 items-start'>
           <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
 
+            <!-- varAllRestaurants -->
             {% for restaurant in varAllRestaurants %}
               <div class="card max-w-xs max-h-full rounded-xl overflow-hidden shadow-2xl transform transition duration-500 hover:scale-105">
                 <!~~ Card image ~~>
