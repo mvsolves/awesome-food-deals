@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.dropdown:hover .dropdown-menu {
-  display: block;
-}
 
 
 @layer utilities {
   .card {
   }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
