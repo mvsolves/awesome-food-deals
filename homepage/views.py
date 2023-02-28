@@ -18,15 +18,20 @@ def foodDeals(request):
 
     loc = request.GET.get('loc')
     deal = request.GET.get('deal')
+    search = request.GET.get('search-bar')
 
-    print(loc)
-    print(deal)
+    # print(loc)
+    # print(deal)
+    # print(search)
 
     if is_valid_queryparam(loc):
         allRestaurants = allRestaurants.filter(rest_location__location_name = loc)
 
     if is_valid_queryparam(deal):
         allRestaurants = allRestaurants.filter(deals__deal_name = deal)
+
+    if is_valid_queryparam(search):
+        allRestaurants = allRestaurants.filter(rest_name__icontains = search)
 
     return render(request, 'food-deals.html', {'varAllRestaurants': allRestaurants,
                                                'varAllDeals': allDeals,
