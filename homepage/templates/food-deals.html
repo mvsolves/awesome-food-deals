@@ -1,99 +1,185 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block title %}Restaurant Deals{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title> Restaurant Deals</title>
+{% block content %}
+  <script>
+    function liveSearch() {
+      console.log("searching..")
+    // Locate the card elements
+      let cards = document.querySelectorAll('.card')
+      console.log(cards)
+    // Locate the search input
+      let search_query = document.getElementById("query").value;
+      console.log(search_query)
+    // Loop through the cards
+      for (var i = 0; i < cards.length; i++) {
+      // If the text is within the card...
+        if(cards[i].innerText.toLowerCase()
+        // ...and the text matches the search query...
+            .includes(search_query.toLowerCase())) {
+          // ...remove the `.is-hidden` class.
+              cards[i].classList.remove("invisible");
+            } else {
+        // Otherwise, add the class.
+              cards[i].classList.add("invisible");
+            }
+      }
+    }
+  </script>
 
-        <link rel="stylesheet" type="text/css" href="{% static 'homepage/styles.css' %}">
+  <div class="h-full w-screen grid grid-cols-6">
 
-        <style>
-            .row{
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-top: 20px;
-            }            
-            /* Float four columns side by side */
-            .column {
-              float: left;
-              width: 25%;
-              padding: 0 20px;
-            }
-            
-            /* Clear floats after the columns */
-            .row:after {
-              content: "";
-              display: table;
-              clear: both;
-            }
-            
-            /* Responsive columns */
-            @media screen and (max-width: 600px) {
-              .column {
-                width: 100%;
-                display: block;
-                margin-bottom: 20px;
-              }
-            }
-            
-            /* Style the counter cards */
-            .card {
-              box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-              padding: 10px;
-              text-align: center;
-              background-color: white;
-              border-radius: 5px
-            }
-            .card:hover {
-                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-             }
-            
-            </style>
-    </head>
-    <body>
-        <div id="main">
-            <header>
-                <h1 style = "text-align: center; color: #495867;">Restaurant Deals</h1>
-             </header>
-            {% include 'navbar.html' %}
+    <!-- Sidebar -->
+    <div class="col-span-1 bg-red-500">
+
+      <aside class="w-full h-full transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
+
+          <form method='get'>
+            <button type='submit' class="flex items-center bg-blue-500 hover:bg-blue-700
+              text-white font-bold py-2 px-4 rounded-full">Apply</button>
+
+            <ul class="space-y-2">
+
+              <li>
+                <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900
+                  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75
+                    dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
+                    <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
+                  </svg>
+                  <span class="ml-3">Locations</span>
+                </a>
+              </li>
+
+
+              {% for location in varAllLocations %}
+                <!~~ Checkbox ~~>
+                <li class='flex justify-start p-2'>
+                  <input id="default-checkbox" type="checkbox" value='{{ location.location_name }}'
+                         name="loc" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
+                                           focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2
+                                           dark:bg-gray-700 dark:border-gray-600">
+                  <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900
+                                                       dark:text-gray-300">{{ location.location_name }}</label>
+                </li>
+              {% endfor %}
+            </ul>
+
+
+
+
+            <!~~ Bottom section ~~>
+            <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+
+              <li>
+                <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900
+                  transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+                  <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-gray-500 transition
+                    duration-75 group-hover:text-gray-900 dark:group-hover:text-white dark:text-gray-400"
+                    focusable="false" data-prefix="fas" data-icon="gem" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512"><path fill="currentColor"
+                    d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0
+                    192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6
+                    224H1.365L244.3 474.9z"></path>
+                  </svg>
+                  <span class="ml-4">Deals</span>
+                </a>
+              </li>
+
+
+              {% for deal in varAllDeals %}
+                <!~~ Checkbox ~~>
+                <li class='flex justify-start p-2'>
+                  <input id="default-checkbox" type="checkbox" value="{{ deal.deal_name }}" name='deal'
+                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
+                  dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                  <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900
+                    dark:text-gray-300">{{ deal.deal_name }}</label>
+                </li>
+              {% endfor %}
+            </ul>
+          </form>
         </div>
+      </aside>
 
-        <!-- TESTING CODE -->
-        <!-- <h3>{ varAllRestaurants }}</h3> -->
-        <!-- <h3>{ varAllDeals }}</h3> -->
-
-        <div class="row">
+    </div> <!~~ End of sidebar ~~>
 
 
 
 
 
 
+    <div class="col-span-5">
+      <div class='container flex flex-col p-4'>
 
+        <!~~ Search bar ~~>
+        <form method='get'>
+          <div class="flex items-center justify-center p-6 space-x-6 bg-white
+                      rounded-xl shadow-lg hover:shadow-xl transition duration-500">
+            <div class="flex bg-gray-100 p-4 w-96 space-x-4 rounded-lg">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30"
+                   fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
 
-            <!-- Restaurant iteration -->
-            {% for restaurant in varAllRestaurants %}
-            <div class="column">
-              <div class="card">
-								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
-                <h3>{{ restaurant.rest_name }} at {{ restaurant.rest_location }}</h3>
-
-                {% for deal in restaurant.deals.all  %}
-                  <p>Deals: {{ deal.deal_name }}</p>
-                {% endfor %}
-
-              </div>
+              <!~~ liveSearch() has been taken out for now. Still open for use ~~>
+              <input class="bg-gray-100 outline-none w-96" oninput='' id='query'
+                     name='search-bar' type="text" placeholder="Restaurant name or keyword.."/>
             </div>
+
+            <div class="bg-blue-600 py-3 px-5 text-white font-semibold rounded-lg
+                        hover:shadow-lg transition duration-3000 cursor-pointer">
+              <button type='submit'>
+                <span>Search</span>
+              </button>
+            </div>
+          </div>
+        </form> <!~~ End of search bar ~~>
+
+        <!~~ Cards ~~>
+        <div class='h-full w-full flex justify-evenly p-10 items-start'>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
+
+            {% for restaurant in varAllRestaurants %}
+              <div class="card max-w-xs max-h-full rounded-xl overflow-hidden shadow-2xl
+                transform transition duration-500 hover:scale-105">
+                <!~~ Card image ~~>
+                <img class="w-full" src="{% static 'homepage/sample_restaurant.jpg' %}" alt="Restaurant">
+
+                <!~~ Body ~~>
+                <div class="px-6 py-4 bg-white">
+                  <div class="font-bold text-xl mb-2">{{ restaurant.rest_name }} at {{ restaurant.rest_location }}</div>
+                  {% for deal in restaurant.deals.all %}
+                    <p class="text-gray-700 text-base">Deals: {{ deal.deal_name }}</p>
+                  {% endfor %}
+                </div>
+
+                <!~~ Hashtags ~~>
+                <div class="px-6 pt-4 pb-2 bg-white">
+                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1
+                    text-sm font-semibold text-gray-700 mr-2 mb-2">#yummy</span>
+                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1
+                    text-sm font-semibold text-gray-700 mr-2 mb-2">#food</span>
+                  <span class="inline-block bg-gray-200 rounded-full px-3 py-1
+                    text-sm font-semibold text-gray-700 mr-2 mb-2">#summer</span>
+                </div>
+              </div>
             {% endfor %}
+          </div>
+        </div> <!~~ End of cards ~~>
+      </div> <!~~ End of flex container ~~>
+    </div>
+
+  </div>
+{% endblock %}
 
 
-
-
-
-
-
+<!--
             <div class="column">
               <div class="card">
 								<img src="{% static 'homepage/sample_restaurant.jpg' %}" width="100%" alt="My image"/>
@@ -246,3 +332,4 @@
         
     </body>
 </html>
+-->

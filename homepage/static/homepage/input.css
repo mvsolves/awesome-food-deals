@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+@layer utilities {
+  .card {
+  }
+
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}

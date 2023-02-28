@@ -1,27 +1,51 @@
 from django.shortcuts import render
-from databases.models import Restaurant, Deal
-
-from databases.models import Restaurant
+from databases.models import Restaurant, Deal, Location
 
 # Create your views here.
 
 def index(request):
     return render(request, 'index.html', {})
 
+
+def is_valid_queryparam(param):
+    return param != '' and param is not None
+
 def foodDeals(request):
     count = Restaurant.objects.count()
     allRestaurants = Restaurant.objects.all()
     allDeals= Deal.objects.all().values()
+    allLocations = Location.objects.all().values()
+
+    loc = request.GET.get('loc')
+    deal = request.GET.get('deal')
+    search = request.GET.get('search-bar')
+
+    # print(loc)
+    # print(deal)
+    # print(search)
+
+    if is_valid_queryparam(loc):
+        allRestaurants = allRestaurants.filter(rest_location__location_name = loc)
+
+    if is_valid_queryparam(deal):
+        allRestaurants = allRestaurants.filter(deals__deal_name = deal)
+
+    if is_valid_queryparam(search):
+        allRestaurants = allRestaurants.filter(rest_name__icontains = search)
+
     return render(request, 'food-deals.html', {'varAllRestaurants': allRestaurants,
+                                               'varAllDeals': allDeals,
+                                               'varAllLocations': allLocations,
+                                               'varTotalCount': count,
+                                               })
+def favorites(request):
+    count = Restaurant.objects.count()
+    allRestaurants = Restaurant.objects.all()
+    allDeals= Deal.objects.all().values()
+    return render(request, 'favorites.html', {'varAllRestaurants': allRestaurants,
                                                'varAllDeals': allDeals,
                                                'totalCount': count
                                                })
-
-def search(request):
-    return render(request, 'search.html', {})
-
-def favorites(request):
-    return render(request, 'favorites.html', {})
 
 def about(request):
     return render(request, 'about.html', {})
