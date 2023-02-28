@@ -20,9 +20,11 @@
             .includes(search_query.toLowerCase())) {
           // ...remove the `.is-hidden` class.
               cards[i].classList.remove("invisible");
+              cards[i].style.display = "";
             } else {
         // Otherwise, add the class.
               cards[i].classList.add("invisible");
+              cards[i].style.display = "none";
             }
       }
     }
