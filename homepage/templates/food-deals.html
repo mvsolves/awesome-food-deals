@@ -30,7 +30,7 @@
     }
   </script>
 
-  <div class="h-full w-screen grid grid-cols-6">
+  <div class="h-full w-screen grid grid-cols-8">
 
     <!-- Sidebar -->
     <div class="col-span-1 bg-red-500">
@@ -39,8 +39,10 @@
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
 
           <form method='get'>
-            <button type='submit' class="flex items-center bg-blue-500 hover:bg-blue-700
-                                         text-white font-bold py-2 px-4 rounded-full">Apply</button>
+            <div class='pb-4'>
+              <button type='submit' class="flex items-center bg-blue-500 hover:bg-blue-700
+                                           text-white font-bold py-2 px-12 rounded-full">Apply</button>
+            </div>
 
             <ul class="space-y-2">
 
@@ -60,12 +62,12 @@
 
               {% for location in varAllLocations %}
                 <!~~ Checkbox ~~>
-                <li class='flex justify-start p-2'>
+                <li class='flex justify-start items-center p-2'>
                   <input id="default-checkbox" type="checkbox" value='{{ location.location_name }}'
                          name="loc" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded
                                            focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2
                                            dark:bg-gray-700 dark:border-gray-600">
-                  <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900
+                  <label for="default-checkbox" class="ml-4 text-lg font-medium text-gray-900
                                                        dark:text-gray-300">{{ location.location_name }}</label>
                 </li>
               {% endfor %}
@@ -76,6 +78,8 @@
 
             <!~~ Bottom section ~~>
             <ul class="pt-4 mt-4 space-y-2 border-t border-gray-200 dark:border-gray-700">
+
+
 
               <li>
                 <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900
@@ -95,11 +99,11 @@
 
               {% for deal in varAllDeals %}
                 <!~~ Checkbox ~~>
-                <li class='flex justify-start p-2'>
+                <li class='flex justify-start items-center p-2'>
                   <input id="default-checkbox" type="checkbox" value="{{ deal.deal_name }}" name='deal'
                          class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
                                 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                  <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900
+                  <label for="default-checkbox" class="ml-4 text-lg font-medium text-gray-900
                                                        dark:text-gray-300">{{ deal.deal_name }}</label>
                 </li>
               {% endfor %}
@@ -115,11 +119,11 @@
 
 
 
-    <div class="col-span-5">
+    <div class="col-span-7">
       <div class='container flex flex-col p-4'>
 
         <!~~ Search bar ~~>
-        <form method='get' class='px-12'>
+        <form method='get' class='px-16'>
           <div class="flex items-center justify-center p-6 space-x-6 bg-white
                       rounded-xl shadow-lg hover:shadow-xl transition duration-500">
             <div class="flex bg-gray-100 p-4 w-96 space-x-4 rounded-lg">
