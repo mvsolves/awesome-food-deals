@@ -4,14 +4,14 @@
 {% block title %}Favorites{% endblock %}
 
 {% block content %}
-<div class='container flex flex-col p-4'>
+<div class="h-full w-screen">
 
   <!-- Cards -->
-  <div class='h-full w-full flex justify-evenly p-10 items-start'>
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-24">
+  <div class='h-full w-full flex justify-evenly p-10 items-center'>
+    <div class="grid sm:grid-cols-1 lg:grid-cols-3 gap-24">
 
     {% for restaurant in user.customer.favorite_rest.all %}
-      <div class="card max-w-xs max-h-full rounded-xl overflow-hidden shadow-2xl transform transition duration-500 hover:scale-105">
+      <div class="card max-w-xs max-h-full rounded-xl overflow-hidden shadow-2xl transform transition duration-500 hover:scale-105 bg-white">
         <!-- Card image -->
         <img class="w-full" src="{% static 'homepage/sample_restaurant.jpg' %}" alt="Restaurant">
 
