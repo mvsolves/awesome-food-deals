@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from databases.models import Restaurant, Deal, Location
+from .forms import RestaurantForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -52,3 +54,21 @@ def about(request):
 
 def FAQ(request):
     return render(request, 'FAQ.html', {})
+
+def login_required_view(request):
+    return render(request, 'login_required.html')
+
+# @login_required
+@login_required(login_url='login-required')
+def create_restaurant(request):
+    if request.method == 'POST':
+        form = RestaurantForm(request.POST)
+        if form.is_valid():
+            new_restaurant = form.save(commit=False)
+            new_restaurant.save()
+            request.user.customer.favorite_rest.add(new_restaurant)
+            # return redirect('create-rest.html', pk=new_restaurant.pk)
+            return redirect('food-deals')
+    else:
+        form = RestaurantForm()
+    return render(request, 'create-rest.html', {'form': form})

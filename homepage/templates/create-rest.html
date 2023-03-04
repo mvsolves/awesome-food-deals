@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Restaurant{% endblock %}
+
+{% block content %}
+  <style>
+    input[type="text"] {
+      border: 1px solid #e2e8f0;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #fc8181;
+      box-shadow: 0 0 0 3px rgba(252, 129, 129, 0.5);
+    }
+
+    select {
+      border: 1px solid #e2e8f0;
+      padding: 0.5rem;
+      border-radius: 0.25rem;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: #fc8181;
+      box-shadow: 0 0 0 3px rgba(252, 129, 129, 0.5);
+    }
+  </style>
+
+  <div class='w-full h-full flex items-center justify-center lg:rounded-xl'>
+    <div class='w-96 flex p-6 flex-col bg-white rounded-xl'>
+
+
+      <h2 class="text-lg font-medium mb-4">Create a New Restaurant</h2>
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-4">
+          <label for="{{ form.rest_name.id_for_label }}" class="block text-gray-700 font-bold mb-2">Restaurant Name</label>
+          {{ form.rest_name }}
+          {% if form.rest_name.errors %}
+            <div class="text-red-500">{{ form.rest_name.errors|first }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-4">
+          <label for="{{ form.rest_location.id_for_label }}" class="block text-gray-700 font-bold mb-2">Location</label>
+          {{ form.rest_location }}
+          {% if form.rest_location.errors %}
+            <div class="text-red-500">{{ form.rest_location.errors|first }}</div>
+          {% endif %}
+        </div>
+        <div class="mb-4">
+          <label for="{{ form.deals.id_for_label }}" class="block text-gray-700 font-bold mb-2">Deals</label>
+          {{ form.deals }}
+          {% if form.deals.errors %}
+            <div class="text-red-500">{{ form.deals.errors|first }}</div>
+          {% endif %}
+        </div>
+        <button type="submit" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-md">Create Restaurant</button>
+      </form>
+    </div>
+
+
+  </div>
+  </div>
+
+{% endblock %}
+

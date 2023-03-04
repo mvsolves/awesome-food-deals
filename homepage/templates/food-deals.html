@@ -40,16 +40,16 @@
 
           <form method='get'>
             <button type='submit' class="flex items-center bg-blue-500 hover:bg-blue-700
-              text-white font-bold py-2 px-4 rounded-full">Apply</button>
+                                         text-white font-bold py-2 px-4 rounded-full">Apply</button>
 
             <ul class="space-y-2">
 
               <li>
                 <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900
-                  rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                                   rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                   <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75
-                    dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
-                    fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                       fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                     <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                   </svg>
@@ -79,14 +79,14 @@
 
               <li>
                 <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900
-                  transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
+                                   transition duration-75 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-white group">
                   <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-gray-500 transition
-                    duration-75 group-hover:text-gray-900 dark:group-hover:text-white dark:text-gray-400"
-                    focusable="false" data-prefix="fas" data-icon="gem" role="img" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"><path fill="currentColor"
-                    d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0
-                    192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6
-                    224H1.365L244.3 474.9z"></path>
+                                                 duration-75 group-hover:text-gray-900 dark:group-hover:text-white dark:text-gray-400"
+                       focusable="false" data-prefix="fas" data-icon="gem" role="img" xmlns="http://www.w3.org/2000/svg"
+                       viewBox="0 0 512 512"><path fill="currentColor"
+                                              d="M378.7 32H133.3L256 182.7L378.7 32zM512 192l-107.4-141.3L289.6 192H512zM107.4 50.67L0
+                                                 192h222.4L107.4 50.67zM244.3 474.9C247.3 478.2 251.6 480 256 480s8.653-1.828 11.67-5.062L510.6
+                                                 224H1.365L244.3 474.9z"></path>
                   </svg>
                   <span class="ml-4">Deals</span>
                 </a>
@@ -97,10 +97,10 @@
                 <!~~ Checkbox ~~>
                 <li class='flex justify-start p-2'>
                   <input id="default-checkbox" type="checkbox" value="{{ deal.deal_name }}" name='deal'
-                  class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
-                  dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
+                                dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                   <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900
-                    dark:text-gray-300">{{ deal.deal_name }}</label>
+                                                       dark:text-gray-300">{{ deal.deal_name }}</label>
                 </li>
               {% endfor %}
             </ul>
@@ -140,6 +140,15 @@
                 <span>Search</span>
               </button>
             </div>
+
+            <a href="{% url 'create-rest' %}">
+              <div class="bg-emerald-500 py-3 px-5 text-white font-semibold rounded-lg
+                          hover:shadow-lg transition duration-3000 cursor-pointer ml-2">
+                <span>+</span>
+              </div>
+            </a>
+
+
           </div>
         </form> <!~~ End of search bar ~~>
 
@@ -149,7 +158,7 @@
 
             {% for restaurant in varAllRestaurants %}
               <div class="card max-w-xs max-h-full rounded-xl overflow-hidden shadow-2xl
-                transform transition duration-500 hover:scale-105">
+                          transform transition duration-500 hover:scale-105">
                 <!~~ Card image ~~>
                 <img class="w-full" src="{% static 'homepage/sample_restaurant.jpg' %}" alt="Restaurant">
 
@@ -164,11 +173,11 @@
                 <!~~ Hashtags ~~>
                 <div class="px-6 pt-4 pb-2 bg-white">
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1
-                    text-sm font-semibold text-gray-700 mr-2 mb-2">#yummy</span>
+                               text-sm font-semibold text-gray-700 mr-2 mb-2">#yummy</span>
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1
-                    text-sm font-semibold text-gray-700 mr-2 mb-2">#food</span>
+                               text-sm font-semibold text-gray-700 mr-2 mb-2">#food</span>
                   <span class="inline-block bg-gray-200 rounded-full px-3 py-1
-                    text-sm font-semibold text-gray-700 mr-2 mb-2">#summer</span>
+                               text-sm font-semibold text-gray-700 mr-2 mb-2">#summer</span>
                 </div>
               </div>
             {% endfor %}
