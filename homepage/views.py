@@ -95,7 +95,22 @@ def add_to_favorites(request, id):
         return HttpResponseNotFound('No Customer matches the given query.')
 
     if customer.favorite_rest.filter(id=id).exists():
-        customer.favorite_rest.remove(id)
+        {}
     else:
         customer.favorite_rest.add(id)
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
+
+@login_required(login_url='login-required')
+def remove_from_favorites(request, id):
+
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    try:
+        customer = Customer.objects.get(user=request.user)
+    except Customer.DoesNotExist:
+        return HttpResponseNotFound('No Customer matches the given query.')
+
+    if customer.favorite_rest.filter(id=id).exists():
+        customer.favorite_rest.remove(id)
+
     return HttpResponseRedirect(request.META["HTTP_REFERER"])

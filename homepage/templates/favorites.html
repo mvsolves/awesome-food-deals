@@ -4,6 +4,16 @@
 {% block title %}Favorites{% endblock %}
 
 {% block content %}
+<style>.fcc-btn {
+  background-color: #2d95d5;
+  border-radius: 20px;
+  color: white;
+  padding: 3px 20px;
+  text-decoration: none;
+}
+.fcc-btn:hover {
+  background-color: #223094;
+}</style>
 <div class="h-full w-screen">
 
   <!-- Cards -->
@@ -28,6 +38,9 @@
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#yummy</span>
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#food</span>
           <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#summer</span>
+        </div>
+        <div class="px-6 pt-4 pb-2 bg-white">
+          <a href="{% url 'unfavorite_rest' restaurant.id %}" class="fcc-btn" role="button" aria-disabled="true">Remove from Favorites</a>
         </div>
       </div>
     {% endfor %}
