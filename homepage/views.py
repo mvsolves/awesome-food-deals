@@ -4,6 +4,10 @@ from .forms import RestaurantForm
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
+from django.urls import reverse
+from django.http import HttpResponseNotFound
+
+
 # Create your views here.
 
 def index(request):
@@ -82,10 +86,16 @@ def create_restaurant(request):
 
 @login_required(login_url='login-required')
 def add_to_favorites(request, id):
-    #fav = get_object_or_404(Restaurant, id=id)
-    x = get_object_or_404(Customer, id=request.user.id)
-    if x.favorite_rest.filter(id=id).exists():
-        x.favorite_rest.remove(id)
+
+    if not request.user.is_authenticated:
+        return HttpResponseRedirect(reverse('login'))
+    try:
+        customer = Customer.objects.get(user=request.user)
+    except Customer.DoesNotExist:
+        return HttpResponseNotFound('No Customer matches the given query.')
+
+    if customer.favorite_rest.filter(id=id).exists():
+        customer.favorite_rest.remove(id)
     else:
-        x.favorite_rest.add(id)
+        customer.favorite_rest.add(id)
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
