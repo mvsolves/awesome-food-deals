@@ -14,20 +14,21 @@ class Location(models.Model):
     def __str__(self) -> str:
         return self.location_name
     
-class Customer(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, primary_key=False)
-    #favorite_rest = models.ManyToManyField(Restaurant, related_name="restaurants")
 
-    def __str__(self) -> str:
-        return self.user.username
     
 class Restaurant(models.Model):
     deals = models.ManyToManyField(Deal, related_name="deals")
     rest_name = models.CharField(max_length=30)
     rest_location = models.ForeignKey('Location', null=True, on_delete=models.CASCADE)
-    fav_rest = models.ManyToManyField(User, related_name="restaurants", blank=True)
+    #fav_rest = models.ManyToManyField(User, related_name="restaurants", blank=True)
 
     def __str__(self) -> str:
         return self.rest_name
 
 
+class Customer(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, primary_key=False)
+    favorite_rest = models.ManyToManyField(Restaurant, related_name="restaurants")
+
+    def __str__(self) -> str:
+        return self.user.username

@@ -76,9 +76,10 @@ def create_restaurant(request):
 
 @login_required
 def add_to_favorites(request, id):
-    fav = get_object_or_404(Restaurant, id=id)
-    if fav.fav_rest.filter(id=request.user.id).exists():
-        fav.fav_rest.remove(request.user)
+    #fav = get_object_or_404(Restaurant, id=id)
+    x = get_object_or_404(Customer, id=request.user.id)
+    if x.favorite_rest.filter(id=id).exists():
+        x.favorite_rest.remove(id)
     else:
-        fav.fav_rest.add(request.user)
+        x.favorite_rest.add(id)
     return HttpResponseRedirect(request.META["HTTP_REFERER"])
