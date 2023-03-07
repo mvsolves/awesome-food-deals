@@ -74,7 +74,7 @@ def create_restaurant(request):
         form = RestaurantForm()
     return render(request, 'create-rest.html', {'form': form})
 
-@login_required
+@login_required(login_url='login-required')
 def add_to_favorites(request, id):
     #fav = get_object_or_404(Restaurant, id=id)
     x = get_object_or_404(Customer, id=request.user.id)
