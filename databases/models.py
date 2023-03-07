@@ -13,14 +13,11 @@ class Location(models.Model):
 
     def __str__(self) -> str:
         return self.location_name
-    
 
-    
 class Restaurant(models.Model):
     deals = models.ManyToManyField(Deal, related_name="deals")
     rest_name = models.CharField(max_length=30)
     rest_location = models.ForeignKey('Location', null=True, on_delete=models.CASCADE)
-    #fav_rest = models.ManyToManyField(User, related_name="restaurants", blank=True)
 
     def __str__(self) -> str:
         return self.rest_name

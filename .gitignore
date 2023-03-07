@@ -13,6 +13,7 @@ venv/
 # Other stuff to not push to repo
 homepage/.DS_Store
 homepage/templates/.DS_Store
+vids
 .DS_Store
 db.sqlite3
 
