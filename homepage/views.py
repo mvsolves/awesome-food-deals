@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
-from databases.models import Restaurant, Deal, Location
+from django.shortcuts import render, redirect, get_object_or_404
+from databases.models import Restaurant, Deal, Location, Customer
 from .forms import RestaurantForm
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 # Create your views here.
 
@@ -79,3 +80,13 @@ def create_restaurant(request):
     else:
         form = RestaurantForm()
     return render(request, 'create-rest.html', {'form': form})
+
+@login_required
+def add_to_favorites(request, id):
+    #fav = get_object_or_404(Restaurant, id=id)
+    x = get_object_or_404(Customer, id=request.user.id)
+    if x.favorite_rest.filter(id=id).exists():
+        x.favorite_rest.remove(id)
+    else:
+        x.favorite_rest.add(id)
+    return HttpResponseRedirect(request.META["HTTP_REFERER"])
