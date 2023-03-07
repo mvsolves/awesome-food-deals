@@ -3,16 +3,28 @@
 {% block title %}Restaurant Deals{% endblock %}
 
 {% block content %}
-<style>.fcc-btn {
+<style>.fcc-btn1 {
   background-color: #2d95d5;
   border-radius: 20px;
   color: white;
   padding: 3px 20px;
   text-decoration: none;
 }
-.fcc-btn:hover {
+.fcc-btn1:hover {
   background-color: #223094;
-}</style>
+}
+.fcc-btn2 {
+  background-color: #0a198a;
+  border-radius: 20px;
+  color: white;
+  padding: 3px 20px;
+  text-decoration: none;
+}
+.fcc-btn2:hover {
+  background-color: #f60808;
+}
+</style>
+
   <script>
     function liveSearch() {
       console.log("searching..")
@@ -187,7 +199,11 @@
                                text-sm font-semibold text-gray-700 mr-2 mb-2">#summer</span>
                 </div>
                 <div class="px-6 pt-4 pb-2 bg-white">
-                  <a href="{% url 'favorite_rest' restaurant.id %}" class="fcc-btn" role="button" aria-disabled="true">Add to Favorites</a>
+                  {% if restaurant in user.customer.favorite_rest.all %}
+                    <a href="{% url 'favorite_rest' restaurant.id %}" class="fcc-btn2" role="button" aria-disabled="true">Remove from Favorites</a>
+                  {% else %}
+                    <a href="{% url 'favorite_rest' restaurant.id %}" class="fcc-btn1" role="button" aria-disabled="true">Add to Favorites</a>
+                  {% endif %}
                 </div>
               </div>
             {% endfor %}
