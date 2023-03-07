@@ -6,10 +6,10 @@ The technology used for this is project is:
 	- Django
 	- AWS server
 
-	![Demo Page](./vids/page-demo.mov)
-	
-	
-	https://user-images.githubusercontent.com/58986949/115314310-805b2780-a1a7-11eb-8558-648a367ea231.mp4
-	
-	https://user-images.githubusercontent.com/vids/page-demo.mov
+
+
+
+
+## Demo page
+https://user-images.githubusercontent.com/97063813/223322497-3f92db4c-03b1-42a2-8748-5d57d3ba2e4e.mov
 
