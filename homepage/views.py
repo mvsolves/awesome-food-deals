@@ -8,7 +8,6 @@ from django.contrib.auth.decorators import login_required
 def index(request):
     return render(request, 'index.html', {})
 
-
 def is_valid_queryparam(param):
     return param != '' and param is not None
 
@@ -21,10 +20,6 @@ def foodDeals(request):
     loc = request.GET.get('loc')
     deal = request.GET.get('deal')
     search = request.GET.get('search-bar')
-
-    # print(loc)
-    # print(deal)
-    # print(search)
 
     if is_valid_queryparam(loc):
         allRestaurants = allRestaurants.filter(rest_location__location_name = loc)
@@ -66,8 +61,20 @@ def create_restaurant(request):
         if form.is_valid():
             new_restaurant = form.save(commit=False)
             new_restaurant.save()
+
+            # Get the selected location and save it to the restaurant object
+            location_id = int(request.POST.get('rest_location'))
+            location = Location.objects.get(pk=location_id)
+            new_restaurant.location = location
+            new_restaurant.save()
+
+            # Get the selected deals and save them to the restaurant object
+            deals = request.POST.getlist('deals')
+            for deal_id in deals:
+                deal = Deal.objects.get(pk=int(deal_id))
+                new_restaurant.deals.add(deal)
+
             request.user.customer.favorite_rest.add(new_restaurant)
-            # return redirect('create-rest.html', pk=new_restaurant.pk)
             return redirect('food-deals')
     else:
         form = RestaurantForm()
