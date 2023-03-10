@@ -1,5 +1,5 @@
 # Awesome Food Deals
-This is a CSC371 website demo that will find in-person food deals.
+This is a CSC394 website demo that will find in-person food deals.
 
 The technology used for this is project is:
 	- Tailwindcss
